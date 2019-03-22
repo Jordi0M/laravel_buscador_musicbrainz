@@ -12,16 +12,29 @@
         <button>Busca</button>
     </form>
 
-    {{var_dump($res)}}
+    <div id="div_info">
 
-    <script>
-		document.addEventListener('DOMContentLoaded', function(){
-            var prueba = {!! $res !!};
-            console.log(prueba);
-        });
-        //var algo = {/*!! json_encode($res->toArray(), JSON_HEX_TAG) !!};
+    </div>
+
+    @if ( isset($res)) 
+    
+        <script>
+            document.addEventListener('DOMContentLoaded', function(){
+            
+                var prueba = {!! $res !!}["artists"];
+                var tabla =  $("<table border='1'>");
+                var tr_nombre = $("<tr>");
+                $(tr_nombre).append("<th>Nombre</th>")
+                for (const key in prueba) {
+                    $(tr_nombre).append( $("<td>").text(prueba[key]["name"]));
+                };
+                $(tabla).append(tr_nombre);
+                $("#div_info").append(tabla);
+                
+            });
+        </script>
         
-    </script>
+    @endif    
 
 </body>    
 </html>
