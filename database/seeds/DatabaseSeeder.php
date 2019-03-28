@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\artista;
+use App\artist;
 
 class DatabaseSeeder extends Seeder
 {
@@ -26,31 +26,46 @@ class DatabaseSeeder extends Seeder
             if ($key == "artists") {
                 foreach ($value as $key2 => $value2) {
 
-                    $p = new artista;
+                    $p = new artist;
 
                     if ( isset($value2["name"]) ) {
                         $p->name = $value2['name'];
                         $this->command->info(var_dump($value2["name"]));
+                    }
+                    else{
+                        $p->name = "";
                     }
 
                     if ( isset($value2["country"]) ) {
                         $p->country = $value2['country'];
                         $this->command->info(var_dump($value2["country"]));
                     }
+                    else{
+                        $p->country = "";
+                    }
 
                     if ( isset($value2["type"]) ) {
                         $p->type = $value2['type'];
                         $this->command->info(var_dump($value2["type"]));
+                    }
+                    else{
+                        $p->type = "";
                     }
 
                     if ( isset($value2["life-span"]["begin"]) ) {
                         $p->begin = $value2["life-span"]['begin'];
                         $this->command->info(var_dump($value2["life-span"]["begin"]));
                     }
+                    else{
+                        $p->begin = "";
+                    }
 
                     if ( isset($value2["life-span"]["end"]) ) {
                         $p->ended = $value2["life-span"]['end'];
                         $this->command->info(var_dump($value2["life-span"]["end"]));
+                    }
+                    else{
+                        $p->ended = "";
                     }
                     $p->save();
                 }

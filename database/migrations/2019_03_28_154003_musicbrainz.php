@@ -20,6 +20,7 @@ class Musicbrainz extends Migration
             $table->string('type')->nulleable();
             $table->string('begin')->nulleable();
             $table->string('ended')->nulleable();
+            $table->timestamps();
 
         });
     }
