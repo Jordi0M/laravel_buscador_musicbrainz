@@ -9,7 +9,7 @@ class controllerBuscador extends Controller
     public function getResultados(Request $request){
         // inicialitzem la crida cURL
         if ($request->buscador){
-            $url = "http://musicbrainz.org/ws/2/artist?query=".$request->buscador;
+            $url = "http://musicbrainz.org/ws/2/recording?query=".$request->buscador;
             $c = curl_init( $url );
             
             // Ajustem headers perquè ens retorni la info en format JSON

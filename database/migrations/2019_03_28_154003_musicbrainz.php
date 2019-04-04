@@ -23,6 +23,15 @@ class Musicbrainz extends Migration
             $table->timestamps();
 
         });
+
+        Schema::create('recordings', function (Blueprint $table) {
+            $table->increments('id')->unique();
+            $table->string('title')->nulleable();
+            $table->string('length')->nulleable();
+            $table->string('disc')->nulleable();
+            $table->timestamps();
+
+        });
     }
 
     /**
@@ -33,5 +42,6 @@ class Musicbrainz extends Migration
     public function down()
     {
         Schema::dropIfExists('artists');
+        Schema::dropIfExists('recordings');
     }
 }
