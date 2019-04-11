@@ -16,4 +16,10 @@ Route::get('/', function () {
 });
 */
 
-Route::get('/','controllerBuscador@getResultados');
+Route::get('/', function (){
+    return redirect('/musicbrainz');
+});
+
+Route::get('/musicbrainz','controllerBuscador@getResultados');
+
+Route::get('/bbdd','controllerBuscador@getResultadosbbdd');

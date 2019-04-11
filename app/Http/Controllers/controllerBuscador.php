@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\artist;
+use App\recording;
 
 class controllerBuscador extends Controller
 {
     public function getResultados(Request $request){
         // inicialitzem la crida cURL
         if ($request->buscador){
-            $url = "http://musicbrainz.org/ws/2/recording?query=".$request->buscador;
+            $url = "http://musicbrainz.org/ws/2/artist?query=".$request->buscador;
             $c = curl_init( $url );
             
             // Ajustem headers perquè ens retorni la info en format JSON
@@ -25,7 +27,7 @@ class controllerBuscador extends Controller
             $dades = json_decode($res,true);
             
             // mostrem nom ($dades ja és un array associatiu PHP)
-            return view('prueba', ['res' => $res]);
+            return view('musicbrainz', ['res' => $res]);
         }
         else{
             $url = "http://musicbrainz.org/ws/2/artist?query=";
@@ -44,8 +46,18 @@ class controllerBuscador extends Controller
             $dades = json_decode($res,true);
             
             // mostrem nom ($dades ja és un array associatiu PHP)
-            return view('prueba', ['res']);    
+            return view('musicbrainz', ['res']);    
         }
+        
+    }
+
+    public function getResultadosbbdd(){
+        
+        $artist = artist::all();
+        $recording = recording::all();
+
+        dd($artist);
+        dd($recording);
         
     }
 }
