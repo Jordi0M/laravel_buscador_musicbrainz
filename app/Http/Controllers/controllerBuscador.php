@@ -56,8 +56,6 @@ class controllerBuscador extends Controller
         $artist = artist::all();
         $recording = recording::all();
 
-        dd($artist);
-        dd($recording);
-        
+        return view('bbdd', compact('artist', 'recording'));
     }
 }

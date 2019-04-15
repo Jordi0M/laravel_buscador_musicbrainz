@@ -6,7 +6,18 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
+
+    <div id="boton">
+        <h1>Para ir la base de datos</h1>
+        <form action="/bbdd">
+            <input type="submit" value="Base de datos">
+        </form>
+    </div>
+
+    <br>
+
     <form action="/musicbrainz">
+        <h1>Buscador</h1>
         <label for="">Busca</label>
         <input type="text" name="buscador">
         <button>Busca</button>

@@ -76,7 +76,7 @@ class DatabaseSeeder extends Seeder
 
         }
 
-        $url = "http://musicbrainz.org/ws/2/recording?query=Ruben";
+        $url = "http://musicbrainz.org/ws/2/recording?query=avenged";
         $c = curl_init( $url );
         curl_setopt($c, CURLOPT_HTTPHEADER, array('Content-Type:application/json','Accept:application/json','User-Agent:Laravel/5.7'));
         curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
@@ -99,20 +99,36 @@ class DatabaseSeeder extends Seeder
                         $p->title = "";
                     }
 
-                    if ( isset($value2["length"]) ) {
-                        $p->length = $value2['length'];
-                        $this->command->info(var_dump($value2["length"]));
+                    if ( isset($value2["releases"][0]["status"]) ) {
+                        $p->status = $value2["releases"][0]["status"];
+                        $this->command->info(var_dump($value2["releases"][0]["status"]));
                     }
                     else{
-                        $p->length = "";
+                        $p->status = "";
+                    }
+
+                    if ( isset($value2["releases"][0]["country"]) ) {
+                        $p->country = $value2["releases"][0]["country"];
+                        $this->command->info(var_dump($value2["releases"][0]["country"]));
+                    }
+                    else{
+                        $p->country = "";
+                    }
+
+                    if ( isset($value2["releases"][0]["date"]) ) {
+                        $p->date = $value2["releases"][0]["date"];
+                        $this->command->info(var_dump($value2["releases"][0]["date"]));
+                    }
+                    else{
+                        $p->date = "";
                     }
 
                     if ( isset($value2["releases"][0]["title"]) ) {
-                        $p->disc = $value2["releases"][0]["title"];
+                        $p->album = $value2["releases"][0]["title"];
                         $this->command->info(var_dump($value2["releases"][0]["title"]));
                     }
                     else{
-                        $p->disc = "";
+                        $p->album = "";
                     }
                     $p->save();
                 }

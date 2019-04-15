@@ -27,8 +27,10 @@ class Musicbrainz extends Migration
         Schema::create('recordings', function (Blueprint $table) {
             $table->increments('id')->unique();
             $table->string('title')->nulleable();
-            $table->string('length')->nulleable();
-            $table->string('disc')->nulleable();
+            $table->string('status')->nulleable();
+            $table->string('country')->nulleable();
+            $table->string('date')->nulleable();
+            $table->string('album')->nulleable();
             $table->timestamps();
 
         });
